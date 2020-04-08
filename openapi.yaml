@@ -1,0 +1,44 @@
+swagger: '2.0'
+info:
+  description: This is an API for renting sharing power banks
+  version: 1.0.0
+  title: Renting power bank API
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+paths:
+  /report/stats:
+    get:
+      summary: gets events stats for renting request and charging box status report
+      operationId: app.get_report_stats
+      description: Gets report stats
+      produces:
+      - application/json
+      responses:
+        200:
+          description: current stats
+          schema:
+            $ref: '#/definitions/Stats'
+        404:
+          description: stats do not exist
+
+definitions:
+  Stats:
+    type: object
+    required:
+    - num_renting_request
+    - num_status_report
+    - updated_timestamp
+    properties:
+      num_renting_request:
+        type: integer
+        example: 1000
+      num_status_report:
+        type: integer
+        example: 1000
+      updated_timestamp:
+        type: string
+        format: date-time
+        example: 2016-08-  29T09:12:33.001z
